@@ -1,0 +1,50 @@
+import React from 'react';
+import {TextInput, View, StyleSheet} from 'react-native';
+import Colors from '../../Res/Colors';
+
+class BadgesSearch extends React.Component {
+  state = {
+    query: '',
+  };
+
+  handleText = query => {
+    //here we check for the words that the user is
+    //writing and we seved those,
+    //if the words change the save is done again
+    this.setState({query});
+    if (this.props.onChange) {
+      this.props.onChange(query);
+    }
+  };
+  render() {
+    const {query} = this.state;
+    return (
+      <View style={styles.container}>
+        <TextInput
+          style={styles.TextInput}
+          onChangeText={this.handleText}
+          value={query}
+          placeholder="search a badge"
+          placeholderTextColor={Colors.charade}
+        />
+      </View>
+    );
+  }
+}
+const styles = StyleSheet.create({
+  container: {
+    width: '95%',
+    marginTop: 15,
+    color: Colors.white,
+    marginBottom: 25,
+  },
+  TextInput: {
+    borderColor: Colors.blackPearl,
+    borderWidth: 1,
+    borderRadius: 10,
+    paddingHorizontal: 16,
+    backgroundColor: Colors.white,
+    color: Colors.charade,
+  },
+});
+export default BadgesSearch;
